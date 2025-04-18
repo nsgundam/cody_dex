@@ -58,7 +58,7 @@ export default function Home() {
           <span className="text-yellow-400">CODY DEX</span>
         </h1>
         <p className="text-lg text-gray-300 max-w-2xl mx-auto">
-          Code. Practice. Build. Your developer journey starts here 🌱
+          Code, Practice, Build, Your developer journey starts here 🌱
         </p>
       </section>
 
@@ -81,30 +81,31 @@ function LanguageSection({ language }) {
     <p>This is a paragraph.</p>
   </body>
 </html>`,
+
     CSS: `body {
   background-color: lightblue;
 }
-
 h1 {
   color: white;
   text-align: center;
 }
-
 p {
   font-family: verdana;
 }`,
+
     JavaScript: `let x = 5;
 let y = 10;
 let sum = x + y;
 console.log("Sum:", sum);`,
+
     Java: `public class Main {
   public static void main(String[] args) {
     System.out.println("Hello, World!");
   }
 }`,
+
     Python: `def greet(name):
   print(f"Hello, {name}!")
-
 greet("World")`,
   };
 
