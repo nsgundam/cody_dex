@@ -18,7 +18,9 @@ export default function Home() {
     <main className="bg-cyan-900 text-white min-h-screen">
       <nav className="bg-gray-900 text-white px-6 py-4 border-b border-gray-800">
         <div className="max-w-7xl mx-auto flex justify-between items-center">
-          <div className="text-xl text-yellow-400 font-mono font-bold">CODY DEX</div>
+          <div className="text-xl text-yellow-400 font-mono font-bold">
+            CODY DEX
+          </div>
 
           <div className="relative group hidden md:flex space-x-6 text-lg font-medium">
             <div
@@ -49,6 +51,9 @@ export default function Home() {
               Practice Coding
             </a>
           </div>
+          <button className="bg-yellow-400 font-mono text-black px-4 py-2 rounded-md hover:bg-yellow-300">
+            Join Club
+          </button>
         </div>
       </nav>
 
@@ -65,6 +70,36 @@ export default function Home() {
       {languages.map((lang) => (
         <LanguageSection key={lang.name} language={lang} />
       ))}
+
+      <footer className="bg-gray-900 text-gray-400 text-sm py-6 px-6 mt-12">
+        <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
+          <p className="font-mono">© 2025 CODY DEX. All rights reserved.</p>
+          <div className="flex space-x-4">
+            <a
+              href="https://www.facebook.com/nurunat.suttibutr"
+              target="_blank"
+              rel="Narunat Sutthibut"
+              className="hover:text-yellow-400 transition"
+            >
+              Facebook
+            </a>
+            <a
+              href="https://github.com/nsgundam"
+              target="_blank"
+              rel="Narunat Suutthibut"
+              className="hover:text-yellow-400 transition"
+            >
+              GitHub
+            </a>
+            <a
+              href="narunat.su66@rsu.ac.th"
+              className="hover:text-yellow-400 transition"
+            >
+              Contact
+            </a>
+          </div>
+        </div>
+      </footer>
     </main>
   );
 }
