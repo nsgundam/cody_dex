@@ -1,103 +1,159 @@
-import Image from "next/image";
+"use client";
+
+import Link from "next/link";
+import { useState } from "react";
 
 export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              app/page.js
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+  const [showDropdown, setShowDropdown] = useState(false);
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+  const languages = [
+    { name: "HTML", href: "/html" },
+    { name: "CSS", href: "/css" },
+    { name: "JavaScript", href: "/javascript" },
+    { name: "Java", href: "/java" },
+    { name: "Python", href: "/python" },
+  ];
+
+  return (
+    <main className="bg-cyan-900 text-white min-h-screen">
+      <nav className="bg-gray-900 text-white px-6 py-4 border-b border-gray-800">
+        <div className="max-w-7xl mx-auto flex justify-between items-center">
+          <div className="text-xl text-yellow-400 font-bold">CODY DEX</div>
+
+          <div className="relative group hidden md:flex space-x-6 text-lg font-medium">
+            <div
+              className="cursor-pointer hover:text-yellow-400 transition relative"
+              onMouseEnter={() => setShowDropdown(true)}
+              onMouseLeave={() => setShowDropdown(false)}
+            >
+              Explore Lessons
+              {showDropdown && (
+                <div className="absolute top-full mt-2 left-0 bg-white text-black rounded shadow-lg z-10 w-48">
+                  {languages.map((lang) => (
+                    <Link
+                      key={lang.name}
+                      href={lang.href}
+                      className="block px-4 py-2 hover:bg-yellow-100 hover:text-yellow-500"
+                    >
+                      {lang.name}
+                    </Link>
+                  ))}
+                </div>
+              )}
+            </div>
+            <a href="#" className="hover:text-yellow-400 transition">
+              Build Projects
+            </a>
+          </div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+      </nav>
+
+      <section className="text-center py-20">
+        <h1 className="text-4xl md:text-6xl font-bold mb-4">
+          Let's learn code with{" "}
+          <span className="text-yellow-400">CODY DEX</span>
+        </h1>
+        <p className="text-lg text-gray-300 max-w-2xl mx-auto">
+          Code. Practice. Build. Your developer journey starts here 🌱
+        </p>
+      </section>
+
+      {languages.map((lang) => (
+        <LanguageSection key={lang.name} language={lang} />
+      ))}
+    </main>
   );
+}
+
+function LanguageSection({ language }) {
+  const sampleCodes = {
+    HTML: `<!DOCTYPE html>
+<html>
+  <head>
+    <title>HTML Tutorial</title>
+  </head>
+  <body>
+    <h1>This is a heading</h1>
+    <p>This is a paragraph.</p>
+  </body>
+</html>`,
+    CSS: `body {
+  background-color: lightblue;
+}
+
+h1 {
+  color: white;
+  text-align: center;
+}
+
+p {
+  font-family: verdana;
+}`,
+    JavaScript: `let x = 5;
+let y = 10;
+let sum = x + y;
+console.log("Sum:", sum);`,
+    Java: `public class Main {
+  public static void main(String[] args) {
+    System.out.println("Hello, World!");
+  }
+}`,
+    Python: `def greet(name):
+  print(f"Hello, {name}!")
+
+greet("World")`,
+  };
+
+  const bgColorMap = {
+    HTML: "bg-green-100",
+    CSS: "bg-yellow-100",
+    JavaScript: "bg-blue-100",
+    Java: "bg-purple-100",
+    Python: "bg-red-100",
+  };
+
+  return (
+    <section className={`${bgColorMap[language.name]} py-16`}>
+      <div className="max-w-5xl mx-auto flex flex-col md:flex-row items-center justify-between gap-8 px-6">
+        <div className="text-center md:text-left">
+          <h2 className="text-4xl font-bold text-black mb-2">
+            {language.name}
+          </h2>
+          <p className="text-black mb-4">
+            {getLanguageDescription(language.name)}
+          </p>
+          <div className="space-y-2">
+            <Link href={language.href}>
+              <button className="bg-green-500 text-white px-4 py-2 rounded">
+                Learn {language.name}
+              </button>
+            </Link>
+          </div>
+        </div>
+
+        <div className="bg-white rounded shadow-lg p-6">
+          <pre className="text-left text-sm text-gray-800 overflow-x-auto">
+            <code>{sampleCodes[language.name]}</code>
+          </pre>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function getLanguageDescription(language) {
+  switch (language) {
+    case "HTML":
+      return "The language for building web pages";
+    case "CSS":
+      return "The language for styling web pages";
+    case "JavaScript":
+      return "The language for making web pages interactive";
+    case "Java":
+      return "A powerful object-oriented programming language";
+    case "Python":
+      return "A popular language for AI, data science, and web development";
+    default:
+      return "";
+  }
 }
