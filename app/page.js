@@ -18,7 +18,7 @@ export default function Home() {
     <main className="bg-cyan-900 text-white min-h-screen">
       <nav className="bg-gray-900 text-white px-6 py-4 border-b border-gray-800">
         <div className="max-w-7xl mx-auto flex justify-between items-center">
-          <div className="text-xl text-yellow-400 font-bold">CODY DEX</div>
+          <div className="text-xl text-yellow-400 font-mono font-bold">CODY DEX</div>
 
           <div className="relative group hidden md:flex space-x-6 text-lg font-medium">
             <div
@@ -26,7 +26,7 @@ export default function Home() {
               onMouseEnter={() => setShowDropdown(true)}
               onMouseLeave={() => setShowDropdown(false)}
             >
-              <div className="cursor-pointer hover:text-yellow-400 transition">
+              <div className="font-mono cursor-pointer hover:text-yellow-400 transition">
                 Explore Lessons
               </div>
 
@@ -45,7 +45,7 @@ export default function Home() {
               )}
             </div>
 
-            <a href="#" className="hover:text-yellow-400 transition">
+            <a href="#" className="font-mono hover:text-yellow-400 transition">
               Practice Coding
             </a>
           </div>
@@ -53,11 +53,11 @@ export default function Home() {
       </nav>
 
       <section className="text-center py-20">
-        <h1 className="text-4xl md:text-6xl font-bold mb-4">
+        <h1 className="text-4xl md:text-6xl font-mono font-bold mb-4">
           Let's learn code with{" "}
           <span className="text-yellow-400">CODY DEX</span>
         </h1>
-        <p className="text-lg text-gray-300 max-w-2xl mx-auto">
+        <p className="text-lg text-gray-300 font-mono max-w-2xl mx-auto">
           Code, Practice, Build, Your developer journey starts here 🌱
         </p>
       </section>
@@ -121,15 +121,15 @@ greet("World")`,
     <section className={`${bgColorMap[language.name]} py-16`}>
       <div className="max-w-5xl mx-auto flex flex-col md:flex-row items-center justify-between gap-8 px-6">
         <div className="text-center md:text-left">
-          <h2 className="text-4xl font-bold text-black mb-2">
+          <h2 className="text-4xl font-mono font-bold text-black mb-2">
             {language.name}
           </h2>
-          <p className="text-black mb-4">
+          <p className="text-black font-mono mb-4">
             {getLanguageDescription(language.name)}
           </p>
           <div className="space-y-2">
             <Link href={language.href}>
-              <button className="bg-green-500 text-white px-4 py-2 rounded">
+              <button className="bg-green-500 text-white font-mono px-4 py-2 rounded">
                 Learn {language.name}
               </button>
             </Link>
