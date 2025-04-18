@@ -113,7 +113,7 @@ greet("World")`,
     CSS: "bg-yellow-100",
     JavaScript: "bg-blue-100",
     Java: "bg-purple-100",
-    Python: "bg-red-100",
+    Python: "bg-pink-200",
   };
 
   return (
