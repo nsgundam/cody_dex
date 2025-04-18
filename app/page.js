@@ -22,13 +22,16 @@ export default function Home() {
 
           <div className="relative group hidden md:flex space-x-6 text-lg font-medium">
             <div
-              className="cursor-pointer hover:text-yellow-400 transition relative"
+              className="relative"
               onMouseEnter={() => setShowDropdown(true)}
               onMouseLeave={() => setShowDropdown(false)}
             >
-              Explore Lessons
+              <div className="cursor-pointer hover:text-yellow-400 transition">
+                Explore Lessons
+              </div>
+
               {showDropdown && (
-                <div className="absolute top-full mt-2 left-0 bg-white text-black rounded shadow-lg z-10 w-48">
+                <div className="absolute top-full mt-0 left-0 bg-white text-black rounded shadow-lg z-10 w-48">
                   {languages.map((lang) => (
                     <Link
                       key={lang.name}
@@ -41,8 +44,9 @@ export default function Home() {
                 </div>
               )}
             </div>
+
             <a href="#" className="hover:text-yellow-400 transition">
-              Build Projects
+              Practice Coding
             </a>
           </div>
         </div>
