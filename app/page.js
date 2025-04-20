@@ -58,10 +58,6 @@ export default function Home() {
               Practice Coding
             </a>
           </div>
-
-          <button className="bg-yellow-400 font-mono text-black px-4 py-2 rounded-md hover:bg-yellow-300">
-            Join Club
-          </button>
         </div>
       </nav>
 
