@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Link from "next/link";
 
 export default function Page() {
   const [lessons, setLessons] = useState([]);
@@ -35,7 +36,12 @@ export default function Page() {
           {Array.isArray(lessons) ? (
             lessons.map((lesson) => (
               <li key={lesson.id} className="border-b pb-2">
-                <span className="text-lg font-medium">{lesson.title}</span>
+                <Link href={`/html/${lesson.id}`}>
+                  <span className="text-lg font-mono font-medium hover:underline cursor-pointer">
+                    {lesson.title}
+                  </span>
+                  <p className=" font-mono ">{lesson.content}</p>
+                </Link>
               </li>
             ))
           ) : (

@@ -4,7 +4,7 @@ import { mysqlPool } from '@/utils/db';
 export async function GET() {
   try {
     const [rows] = await mysqlPool.execute(
-      'SELECT * FROM lessons WHERE language_id = ?',
+      'SELECT * FROM lessons WHERE languages_id = ?',
       [1] 
     );
 
