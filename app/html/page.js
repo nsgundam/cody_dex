@@ -2,27 +2,46 @@
 
 import { useEffect, useState } from "react";
 
-export default function page() {
-  const [languages, setLanguages] = useState([]);
-
+export default function Page() {
+  const [lessons, setLessons] = useState([]);
   useEffect(() => {
-    const fetchLanguages = async () => {
+    async function fetchLessons() {
       try {
-        const res = await fetch("/api/languages");
+        const res = await fetch("/api/lessons/html");
         const data = await res.json();
-        setLanguages(data);
+        console.log("✅ Fetched lessons:", data); // 🔍 ดูว่าได้อะไรจริงๆ
+        setLessons(data);
       } catch (err) {
-        console.error("Failed to fetch languages:", err);
+        console.error("Error loading lessons:", err);
+        setLessons([]); // fallback
       }
-    };
-    fetchLanguages();
+    }
+
+    fetchLessons();
   }, []);
 
   return (
     <main className="bg-cyan-900 text-white min-h-screen">
-
       <section className="text-center py-20">
         <h1 className="text-4xl md:text-6xl font-mono font-bold mb-4">HTML</h1>
+        <p className="font-mono text-lg">
+          Here we'll start from 0, so let's go!!!
+        </p>
+      </section>
+
+      <section className="max-w-3xl mx-auto px-6 py-10 bg-white text-black rounded-lg shadow-md">
+        <h2 className="text-2xl font-mono font-bold mb-6">Lessons</h2>
+        <ul className="space-y-4">
+          {Array.isArray(lessons) ? (
+            lessons.map((lesson) => (
+              <li key={lesson.id} className="border-b pb-2">
+                <span className="text-lg font-medium">{lesson.title}</span>
+              </li>
+            ))
+          ) : (
+            <p className="text-red-400">ไม่สามารถโหลดบทเรียนได้</p>
+          )}
+        </ul>
       </section>
     </main>
   );
