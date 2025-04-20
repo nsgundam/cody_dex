@@ -24,9 +24,11 @@ export default function page() {
     <main className="bg-cyan-900 text-white min-h-screen">
       <nav className="bg-gray-900 text-white px-6 py-4 border-b border-gray-800">
         <div className="max-w-7xl mx-auto flex justify-between items-center">
-          <div className="text-xl text-yellow-400 font-mono font-bold">
-            CODY DEX
-          </div>
+          <Link href="/">
+            <div className="text-xl text-yellow-400 font-mono font-bold">
+              CODY DEX
+            </div>
+          </Link>
 
           <div className="relative group hidden md:flex space-x-6 text-lg font-medium">
             <div

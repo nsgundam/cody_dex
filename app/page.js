@@ -24,9 +24,11 @@ export default function Home() {
     <main className="bg-cyan-900 text-white min-h-screen">
       <nav className="bg-gray-900 text-white px-6 py-4 border-b border-gray-800">
         <div className="max-w-7xl mx-auto flex justify-between items-center">
-          <div className="text-xl text-yellow-400 font-mono font-bold">
-            CODY DEX
-          </div>
+          <Link href="/">
+            <div className="text-xl text-yellow-400 font-mono font-bold">
+              CODY DEX
+            </div>
+          </Link>
 
           <div className="relative group hidden md:flex space-x-6 text-lg font-medium">
             <div
@@ -65,7 +67,8 @@ export default function Home() {
 
       <section className="text-center py-20">
         <h1 className="text-4xl md:text-6xl font-mono font-bold mb-4">
-          Let's learn code with <span className="text-yellow-400">CODY DEX</span>
+          Let's learn code with{" "}
+          <span className="text-yellow-400">CODY DEX</span>
         </h1>
         <p className="text-lg text-gray-300 font-mono max-w-2xl mx-auto">
           Code, Practice, Build, Your developer journey starts here 🌱
