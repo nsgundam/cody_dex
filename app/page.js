@@ -76,7 +76,7 @@ export default function Home() {
         <LanguageSection key={lang.slug} language={lang} />
       ))}
 
-      <footer className="bg-gray-900 text-gray-400 text-sm py-6 px-6 mt-12">
+      <footer className="bg-gray-900 text-gray-400 text-sm py-16 px-6">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="font-mono">© 2025 CODY DEX. All rights reserved.</p>
           <div className="flex space-x-4">
@@ -110,8 +110,15 @@ export default function Home() {
 }
 
 function LanguageSection({ language }) {
+  const bgColorMap = {
+    html: "bg-green-100",
+    css: "bg-yellow-100",
+    javascript: "bg-blue-100",
+    java: "bg-purple-100",
+    python: "bg-pink-200",
+  };
   return (
-    <section className={`bg-gray-100 py-16`}>
+    <section className={`${bgColorMap[language.slug] || "bg-gray-100"} py-16`}>
       <div className="max-w-5xl mx-auto flex flex-col md:flex-row items-center justify-between gap-8 px-6">
         <div className="text-center md:text-left">
           <h2 className="text-4xl font-mono font-bold text-black mb-2">
