@@ -24,7 +24,7 @@ export default function Page() {
     if (slug) {
       fetchLessons();
     }
-  }, [slug]); // ✅ run เมื่อ slug เปลี่ยน
+  }, [slug]); 
 
   return (
     <main className="bg-cyan-900 text-white min-h-screen">
@@ -54,7 +54,7 @@ export default function Page() {
               </li>
             ))
           ) : (
-            <p className="text-red-400">ไม่สามารถโหลดบทเรียนได้</p>
+            <p className="text-red-400">Can not find content</p>
           )}
         </ul>
       </section>

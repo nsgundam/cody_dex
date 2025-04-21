@@ -5,7 +5,6 @@ export async function GET(_req, { params }) {
   const { slug } = params;
 
   try {
-    // ค้นหาภาษาด้วย slug เช่น "html"
     const [langRows] = await mysqlPool.query(
       'SELECT id FROM languages WHERE slug = ?',
       [slug]
@@ -17,7 +16,6 @@ export async function GET(_req, { params }) {
 
     const languageId = langRows[0].id;
 
-    // ค้นหาบทเรียนทั้งหมดของภาษานั้น
     const [lessonRows] = await mysqlPool.query(
       'SELECT * FROM lessons WHERE languages_id = ?',
       [languageId]
@@ -25,7 +23,7 @@ export async function GET(_req, { params }) {
 
     return NextResponse.json(lessonRows);
   } catch (error) {
-    console.error("❌ Error fetching lessons by slug:", error);
+    console.error("Error fetching lessons by slug:", error);
     return NextResponse.json({ error: 'Failed to fetch lessons' }, { status: 500 });
   }
 }
