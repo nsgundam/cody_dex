@@ -13,7 +13,6 @@ export default function Page() {
       try {
         const res = await fetch(`/api/lessons/${slug}`);
         const data = await res.json();
-        console.log("Fetched lessons:", data);
         setLessons(data);
       } catch (err) {
         console.error("Error loading lessons:", err);
@@ -27,6 +26,8 @@ export default function Page() {
   }, [slug]); 
 
   return (
+
+    // Header section ใช้สำหรับโชว์ชื่อภาษาที่ผู้ใช้งานเข้ามาใช้
     <main className="bg-cyan-900 text-white min-h-screen">
       <section className="text-center py-20">
         <h1 className="text-4xl md:text-6xl font-mono font-bold mb-4 uppercase">
