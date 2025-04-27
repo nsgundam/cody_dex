@@ -23,7 +23,7 @@ export default function Home() {
     <main className="bg-cyan-900 text-white min-h-screen">
       <section className="text-center py-20">
         <h1 className="text-4xl md:text-6xl font-mono font-bold mb-4">
-          Let's learn code with <span className="text-yellow-400">CODYDEX</span>
+          Lets learn code with <span className="text-yellow-400">CODYDEX</span>
         </h1>
         <p className="text-lg text-gray-300 font-mono max-w-2xl mx-auto">
           Code, Practice, Build, Your developer journey starts here

@@ -34,7 +34,7 @@ export default function Page() {
           {slug}
         </h1>
         <p className="font-mono text-lg">
-          Here we'll start from 0, so let's go!!!
+          Here we will start from 0, so lets go!!!
         </p>
       </section>
 
