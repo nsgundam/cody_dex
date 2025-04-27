@@ -48,10 +48,6 @@ export default function Navbar() {
               </div>
             )}
           </div>
-
-          <a href="#" className="font-mono hover:text-yellow-400 transition">
-            Practice Coding
-          </a>
         </div>
       </div>
     </nav>
