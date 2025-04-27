@@ -1,18 +1,21 @@
 import { NextResponse } from "next/server";
 import { mysqlPool } from "@/utils/db";
 
-//  GET 
+//  GET
 export async function GET() {
   try {
     const [rows] = await mysqlPool.query(`SELECT * FROM languages`);
     return NextResponse.json(rows);
   } catch (error) {
     console.error("Database error (GET /languages):", error);
-    return NextResponse.json({ error: "Failed to fetch languages" }, { status: 500 });
+    return NextResponse.json(
+      { error: "Failed to fetch languages" },
+      { status: 500 }
+    );
   }
 }
 
-// POST 
+// POST
 export async function POST(request) {
   try {
     const body = await request.json();
@@ -26,11 +29,14 @@ export async function POST(request) {
     return NextResponse.json({ message: "Language created successfully" });
   } catch (error) {
     console.error("Database error (POST /languages):", error);
-    return NextResponse.json({ error: "Failed to create language" }, { status: 500 });
+    return NextResponse.json(
+      { error: "Failed to create language" },
+      { status: 500 }
+    );
   }
 }
 
-// PUT 
+// PUT
 export async function PUT(request) {
   try {
     const body = await request.json();
@@ -44,24 +50,26 @@ export async function PUT(request) {
     return NextResponse.json({ message: "Language updated successfully" });
   } catch (error) {
     console.error("Database error (PUT /languages):", error);
-    return NextResponse.json({ error: "Failed to update language" }, { status: 500 });
+    return NextResponse.json(
+      { error: "Failed to update language" },
+      { status: 500 }
+    );
   }
 }
 
-// DELETE 
-export async function DELETE(request) {
-  try {
-    const body = await request.json();
-    const { id } = body;
+export async function DELETE(request, { params }) {
+  const { id } = params; // ดึง id จาก params ของ URL
 
-    await mysqlPool.query(
-      `DELETE FROM languages WHERE id = ?`,
-      [id]
-    );
+  try {
+    // ลบภาษา
+    await mysqlPool.query(`DELETE FROM languages WHERE id = ?`, [id]);
 
     return NextResponse.json({ message: "Language deleted successfully" });
   } catch (error) {
     console.error("Database error (DELETE /languages):", error);
-    return NextResponse.json({ error: "Failed to delete language" }, { status: 500 });
+    return NextResponse.json(
+      { error: "Failed to delete language" },
+      { status: 500 }
+    );
   }
 }

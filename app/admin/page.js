@@ -3,68 +3,53 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 
-export default function AdminPage() {
-  const [lessons, setLessons] = useState([]);
+export default function AdminLanguages() {
+  const [languages, setLanguages] = useState([]);
 
   useEffect(() => {
-    fetchLessons();
+    fetchLanguages();
   }, []);
 
-  async function fetchLessons() {
+  // Fetch Languages
+  async function fetchLanguages() {
     try {
-      const res = await fetch("/api/admin/lessons");
+      const res = await fetch("/api/languages");
       const data = await res.json();
-      setLessons(data);
+      setLanguages(data);
     } catch (error) {
-      console.error("Error fetching lessons:", error);
+      console.error("Error fetching languages:", error);
     }
   }
 
-  async function deleteLesson(id) {
-    if (confirm("Are you sure you want to delete this lesson?")) {
-      await fetch(`/api/admin/lessons/${id}`, {
-        method: "DELETE",
-      });
-      fetchLessons(); // โหลดใหม่หลังลบ
-    }
-  }
 
   return (
     <div className="min-h-screen p-8 bg-cyan-900 text-white">
-      <h1 className="text-3xl font-bold mb-6 font-mono">Admin: Manage Lessons</h1>
+      <h1 className="text-3xl font-bold mb-6 font-mono">Admin: Manage Languages</h1>
 
-      <Link href="/admin/add" className="bg-green-500 text-white px-4 py-2 rounded mb-6 inline-block font-mono">
-        Add New Lesson
+      <Link href="/admin/add-language" className="bg-green-500 text-white px-4 py-2 rounded mb-6 inline-block font-mono">
+        Add New Language
       </Link>
 
       <table className="w-full bg-white text-black rounded overflow-hidden mt-6">
         <thead className="bg-gray-200">
           <tr>
             <th className="p-3 text-left">ID</th>
-            <th className="p-3 text-left">Title</th>
             <th className="p-3 text-left">Language</th>
             <th className="p-3">Actions</th>
           </tr>
         </thead>
         <tbody>
-          {lessons.map((lesson) => (
-            <tr key={lesson.id} className="border-t">
-              <td className="p-3">{lesson.id}</td>
-              <td className="p-3">{lesson.title}</td>
-              <td className="p-3">{lesson.language_name}</td>
+          {languages.map((language) => (
+            <tr key={language.id} className="border-t">
+              <td className="p-3">{language.id}</td>
+              <td className="p-3">{language.name}</td>
               <td className="p-3 flex gap-2 justify-center">
                 <Link
-                  href={`/admin/edit/${lesson.id}`}
+                  href={`/admin/edit-language/${language.id}`}
                   className="bg-yellow-400 text-black px-3 py-1 rounded font-mono"
                 >
                   Edit
                 </Link>
-                <button
-                  onClick={() => deleteLesson(lesson.id)}
-                  className="bg-red-500 text-white px-3 py-1 rounded font-mono"
-                >
-                  Delete
-                </button>
               </td>
             </tr>
           ))}
