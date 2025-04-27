@@ -26,7 +26,7 @@ export default function Home() {
           Let's learn code with <span className="text-yellow-400">CODYDEX</span>
         </h1>
         <p className="text-lg text-gray-300 font-mono max-w-2xl mx-auto">
-          Code, Practice, Build, Your developer journey starts here 🌱
+          Code, Practice, Build, Your developer journey starts here
         </p>
       </section>
 
