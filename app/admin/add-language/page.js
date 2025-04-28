@@ -49,7 +49,7 @@ export default function AddLanguage() {
             value={name}
             onChange={(e) => setName(e.target.value)}
             required
-            className="w-full p-3 rounded"
+            className="w-full p-3 rounded bg-white"
           />
         </div>
 
@@ -60,7 +60,7 @@ export default function AddLanguage() {
             value={slug}
             onChange={(e) => setSlug(e.target.value)}
             required
-            className="w-full p-3 rounded"
+            className="w-full p-3 rounded bg-white"
           />
         </div>
 
@@ -70,7 +70,7 @@ export default function AddLanguage() {
             value={description}
             onChange={(e) => setDescription(e.target.value)}
             required
-            className="w-full p-3 rounded"
+            className="w-full p-3 rounded bg-white"
           />
         </div>
 
@@ -80,7 +80,7 @@ export default function AddLanguage() {
             value={sampleCode}
             onChange={(e) => setSampleCode(e.target.value)}
             required
-            className="w-full p-3 rounded"
+            className="w-full p-3 rounded bg-white"
           />
         </div>
 
