@@ -1,16 +1,17 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { useParams, useRouter } from "next/navigation"; //  เพิ่ม useRouter มาด้วย
+import { useParams, useRouter } from "next/navigation";
 
 export default function Page() {
   const { slug, id } = useParams();
-  const router = useRouter(); //  ใช้สำหรับเปลี่ยนหน้า
-  const currentId = parseInt(id, 10); //  แปลง id จาก string เป็นตัวเลข
+  const router = useRouter();
+  const currentId = parseInt(id, 10);
 
   const [code, setCode] = useState("");
   const [lessonContent, setLessonContent] = useState("");
   const [lessonExercise, setLessonExercise] = useState("");
+  const [lessonsList, setLessonsList] = useState([]); // 🟡 เก็บ list บทเรียนทั้งหมดในภาษานี้
 
   useEffect(() => {
     const fetchLesson = async () => {
@@ -25,17 +26,36 @@ export default function Page() {
       }
     };
 
-    if (slug && id) fetchLesson();
+    const fetchLessonsList = async () => {
+      try {
+        const res = await fetch(`/api/lessons/${slug}`);
+        const data = await res.json();
+        setLessonsList(data); 
+      } catch (error) {
+        console.error("Failed to load lessons list:", error);
+      }
+    };
+
+    if (slug && id) {
+      fetchLesson();
+      fetchLessonsList();
+    }
   }, [slug, id]);
 
   function goToPrevious() {
-    if (currentId > 1) {
-      router.push(`/${slug}/${currentId - 1}`);
+    const currentIndex = lessonsList.findIndex(lesson => lesson.id === currentId);
+    if (currentIndex > 0) {
+      const previousLesson = lessonsList[currentIndex - 1];
+      router.push(`/${slug}/${previousLesson.id}`);
     }
   }
 
   function goToNext() {
-    router.push(`/${slug}/${currentId + 1}`);
+    const currentIndex = lessonsList.findIndex(lesson => lesson.id === currentId);
+    if (currentIndex !== -1 && currentIndex < lessonsList.length - 1) {
+      const nextLesson = lessonsList[currentIndex + 1];
+      router.push(`/${slug}/${nextLesson.id}`);
+    }
   }
 
   return (
@@ -77,7 +97,7 @@ export default function Page() {
       <div className="flex justify-between items-center px-6 py-4 bg-gray-900">
         <button
           onClick={goToPrevious}
-          disabled={currentId === 1}
+          disabled={lessonsList.findIndex(lesson => lesson.id === currentId) === 0}
           className="bg-yellow-400 text-black font-mono px-4 py-2 rounded hover:bg-yellow-300 disabled:opacity-50"
         >
           ← Previous
@@ -85,7 +105,8 @@ export default function Page() {
 
         <button
           onClick={goToNext}
-          className="bg-yellow-400 text-black font-mono px-4 py-2 rounded hover:bg-yellow-300"
+          disabled={lessonsList.findIndex(lesson => lesson.id === currentId) === lessonsList.length - 1}
+          className="bg-yellow-400 text-black font-mono px-4 py-2 rounded hover:bg-yellow-300 disabled:opacity-50"
         >
           Next →
         </button>
