@@ -5,7 +5,7 @@ export default function Footer() {
           <p className="font-mono">© 2025 CODYDEX. All rights reserved.</p>
           <div className="flex space-x-4">
             <a
-              href="https://www.facebook.com/nurunat.suttibutr"
+              href="https://www.facebook.com"
               target="_blank"
               rel="noopener noreferrer"
               className="hover:text-yellow-400 transition"
@@ -13,7 +13,7 @@ export default function Footer() {
               Facebook
             </a>
             <a
-              href="https://github.com/nsgundam"
+              href="https://github.com"
               target="_blank"
               rel="noopener noreferrer"
               className="hover:text-yellow-400 transition"

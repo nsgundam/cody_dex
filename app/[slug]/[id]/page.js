@@ -65,7 +65,6 @@ export default function Page() {
 
   return (
     <div className="min-h-screen flex flex-col bg-cyan-900 text-white">
-      {/* 3 ส่วนหลัก */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4 p-4 flex-grow">
         {/* ซ้าย: เนื้อหาบทเรียน */}
         <aside className="bg-white text-black p-4 rounded shadow overflow-y-auto">

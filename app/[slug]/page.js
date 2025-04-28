@@ -19,7 +19,6 @@ export default function Page() {
         setLessons([]);
       }
     }
-
     if (slug) {
       fetchLessons();
     }
