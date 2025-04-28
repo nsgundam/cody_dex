@@ -3,22 +3,30 @@ import { mysqlPool } from "@/utils/db";
 
 // GET
 export async function GET(request, { params }) {
-  const { id } = params; // lesson_number
+  const { slug, id } = params;
 
   try {
-    const [rows] = await mysqlPool.query(
-      "SELECT * FROM contents WHERE lesson_number = ?",
-      [id]
+    
+    const [languages] = await mysqlPool.query(
+      "SELECT id FROM languages WHERE slug = ?",
+      [slug]
     );
-
-    if (rows.length === 0) {
-      return NextResponse.json({ error: "Lesson content not found" }, { status: 404 });
+    if (languages.length === 0) {
+      return NextResponse.json({ error: "Language not found" }, { status: 404 });
     }
+    const languageId = languages[0].id;
 
-    return NextResponse.json(rows[0]); // Return the first matching row
+    const [lessons] = await mysqlPool.query(
+      "SELECT * FROM lessons WHERE id = ? AND languages_id = ?",
+      [id, languageId]
+    );
+    if (lessons.length === 0) {
+      return NextResponse.json({ error: "Lesson not found" }, { status: 404 });
+    }
+    return NextResponse.json(lessons[0]);
   } catch (error) {
     console.error("Database error:", error);
-    return NextResponse.json({ error: "Failed to fetch content" }, { status: 500 });
+    return NextResponse.json({ error: "Failed to fetch lesson" }, { status: 500 });
   }
 }
 

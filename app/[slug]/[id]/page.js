@@ -11,7 +11,7 @@ export default function Page() {
   const [code, setCode] = useState("");
   const [lessonContent, setLessonContent] = useState("");
   const [lessonExercise, setLessonExercise] = useState("");
-  const [lessonsList, setLessonsList] = useState([]); // 🟡 เก็บ list บทเรียนทั้งหมดในภาษานี้
+  const [lessonsList, setLessonsList] = useState([]); // เก็บ list บทเรียนทั้งหมดในภาษานี้
 
   useEffect(() => {
     const fetchLesson = async () => {
@@ -43,20 +43,25 @@ export default function Page() {
   }, [slug, id]);
 
   function goToPrevious() {
-    const currentIndex = lessonsList.findIndex(lesson => lesson.id === currentId);
-    if (currentIndex > 0) {
-      const previousLesson = lessonsList[currentIndex - 1];
+    const currentLesson = lessonsList.find(lesson => lesson.id === currentId);
+    if (!currentLesson) return;
+  
+    const previousLesson = lessonsList.find(lesson => lesson.lesson_number === currentLesson.lesson_number - 1);
+    if (previousLesson) {
       router.push(`/${slug}/${previousLesson.id}`);
     }
   }
-
+  
   function goToNext() {
-    const currentIndex = lessonsList.findIndex(lesson => lesson.id === currentId);
-    if (currentIndex !== -1 && currentIndex < lessonsList.length - 1) {
-      const nextLesson = lessonsList[currentIndex + 1];
+    const currentLesson = lessonsList.find(lesson => lesson.id === currentId);
+    if (!currentLesson) return;
+  
+    const nextLesson = lessonsList.find(lesson => lesson.lesson_number === currentLesson.lesson_number + 1);
+    if (nextLesson) {
       router.push(`/${slug}/${nextLesson.id}`);
     }
   }
+  
 
   return (
     <div className="min-h-screen flex flex-col bg-cyan-900 text-white">
