@@ -1,11 +1,12 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
-import { use } from "react";
-
+import React, { useState, useEffect } from "react";
+import { useParams, useRouter } from "next/navigation";
 
 export default function EditLanguage({ params }) {
+  const { id } = params; 
+  const router = useRouter();
+
   const [language, setLanguage] = useState(null);
   const [name, setName] = useState("");
   const [slug, setSlug] = useState("");
@@ -13,19 +14,13 @@ export default function EditLanguage({ params }) {
   const [sampleCode, setSampleCode] = useState("");
   const [error, setError] = useState("");
 
-  const router = useRouter();
-
-  // Unwrap params using React.use() (important for Next.js 13.5+)
-  const { id } = use(params); // Use `use()` to unwrap params
-
   useEffect(() => {
-    // Fetch language data by ID when the page loads
     fetchLanguageData();
   }, [id]);
 
   async function fetchLanguageData() {
     try {
-      const res = await fetch(`/api/languages`);
+      const res = await fetch(`/api/languages/${id}`); 
       const data = await res.json();
       if (data) {
         setLanguage(data);
@@ -40,18 +35,16 @@ export default function EditLanguage({ params }) {
     }
   }
 
-  // Handle form submission to update language
   async function handleSubmit(event) {
     event.preventDefault();
 
     try {
-      const res = await fetch(`/api/languages`, {
+      const res = await fetch(`/api/languages/${id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          id,
           name,
           slug,
           description,
@@ -61,13 +54,35 @@ export default function EditLanguage({ params }) {
 
       const data = await res.json();
       if (res.ok) {
-        router.push("/admin"); // Redirect to admin home after success
+        router.push("/admin");
       } else {
         setError(data.error || "Failed to update language");
       }
     } catch (error) {
       console.error("Error updating language:", error);
       setError("Failed to update language");
+    }
+  }
+
+  // ✅ ฟังก์ชันลบภาษา
+  async function handleDelete() {
+    const confirmed = confirm("Are you sure you want to delete this language?");
+    if (!confirmed) return;
+
+    try {
+      const res = await fetch(`/api/languages/${id}`, {
+        method: "DELETE",
+      });
+
+      const data = await res.json();
+      if (res.ok) {
+        router.push("/admin"); // กลับไปหน้า admin
+      } else {
+        setError(data.error || "Failed to delete language");
+      }
+    } catch (error) {
+      console.error("Error deleting language:", error);
+      setError("Failed to delete language");
     }
   }
 
@@ -130,12 +145,22 @@ export default function EditLanguage({ params }) {
           />
         </div>
 
-        <button
-          type="submit"
-          className="bg-green-500 text-white px-4 py-2 rounded font-mono mt-4"
-        >
-          Update Language
-        </button>
+        <div className="flex space-x-4 mt-6">
+          <button
+            type="submit"
+            className="bg-green-500 text-white px-4 py-2 rounded font-mono hover:bg-green-400"
+          >
+            Update Language
+          </button>
+
+          <button
+            type="button"
+            onClick={handleDelete}
+            className="bg-red-500 text-white px-4 py-2 rounded font-mono hover:bg-red-400"
+          >
+            Delete Language
+          </button>
+        </div>
       </form>
     </div>
   );

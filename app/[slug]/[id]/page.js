@@ -11,7 +11,7 @@ export default function Page() {
   const [code, setCode] = useState("");
   const [lessonContent, setLessonContent] = useState("");
   const [lessonExercise, setLessonExercise] = useState("");
-  const [lessonsList, setLessonsList] = useState([]); // เก็บ list บทเรียนทั้งหมดในภาษานี้
+  const [lessonsList, setLessonsList] = useState([]); 
 
   useEffect(() => {
     const fetchLesson = async () => {
@@ -102,16 +102,14 @@ export default function Page() {
         <button
           onClick={goToPrevious}
           disabled={lessonsList.findIndex(lesson => lesson.id === currentId) === 0}
-          className="bg-yellow-400 text-black font-mono px-4 py-2 rounded hover:bg-yellow-300 disabled:opacity-50"
-        >
+          className="bg-yellow-400 text-black font-mono px-4 py-2 rounded hover:bg-yellow-300 disabled:opacity-50">
           ← Previous
         </button>
 
         <button
           onClick={goToNext}
           disabled={lessonsList.findIndex(lesson => lesson.id === currentId) === lessonsList.length - 1}
-          className="bg-yellow-400 text-black font-mono px-4 py-2 rounded hover:bg-yellow-300 disabled:opacity-50"
-        >
+          className="bg-yellow-400 text-black font-mono px-4 py-2 rounded hover:bg-yellow-300 disabled:opacity-50">
           Next →
         </button>
       </div>
